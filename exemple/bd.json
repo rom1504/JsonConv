@@ -1,0 +1,36 @@
+[ { "nom" : "Dupont",
+    "prenom" : "Jean",
+    "adresse" : 
+    { "rue" : "rue d'Italie",
+      "CP" : 93151,
+      "Ville" : "Paris"
+    },
+    "adresses email" : [
+       { "login" : "dupont",
+         "ISP" : "truc.fr",
+	 "identite" : "Jean Dupont"},
+       { "login" : "jean.dupont",
+         "ISP" : "machin.org"
+	 }
+       ],
+       "membre" : true 
+}
+    ,
+  { "nom" : "Dupond",
+    "prenom" : "Pierre",
+    "adresse" : 
+    { "CP" : 84264,
+      "Ville" : "Amsterdam",
+      "Pays" : "Pays-Bas"
+    },
+      "membre" : false 
+},
+  { "nom" : "Martin",
+    "prenom" : "Paul",
+    "adresses email" :
+      [ { "identite" : "Paul Martin",
+          "login" : "martin",
+          "ISP" : "truc.fr" } ],
+    "adresse" : null
+  }
+]  

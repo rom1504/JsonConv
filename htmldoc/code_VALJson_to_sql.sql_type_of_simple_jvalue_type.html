@@ -1,0 +1,21 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Type" rel="Chapter" href="Type.html">
+<link title="Json_to_json" rel="Chapter" href="Json_to_json.html">
+<link title="Json_to_xml" rel="Chapter" href="Json_to_xml.html">
+<link title="Infer_type" rel="Chapter" href="Infer_type.html">
+<link title="Json_to_type" rel="Chapter" href="Json_to_type.html">
+<link title="Json_to_sql" rel="Chapter" href="Json_to_sql.html"><title>Json_to_sql.sql_type_of_simple_jvalue_type</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;sql_type_of_simple_jvalue_type&nbsp;t=<span class="keyword">match</span>&nbsp;t&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span><span class="constructor">TString</span>&nbsp;<span class="keywordsign">|</span><span class="constructor">TNull</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="string">"TEXT"</span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span><span class="constructor">TBool</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="string">"INT"</span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span><span class="constructor">TNumber</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="string">"FLOAT"</span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;raise&nbsp;<span class="constructor">On_ne_doit_pas_appeler_cette_fonction_dans_ce_cas</span></code></body></html>

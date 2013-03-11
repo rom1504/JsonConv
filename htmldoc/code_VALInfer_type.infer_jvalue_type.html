@@ -1,0 +1,35 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Type" rel="Chapter" href="Type.html">
+<link title="Json_to_json" rel="Chapter" href="Json_to_json.html">
+<link title="Json_to_xml" rel="Chapter" href="Json_to_xml.html">
+<link title="Infer_type" rel="Chapter" href="Infer_type.html">
+<link title="Json_to_type" rel="Chapter" href="Json_to_type.html">
+<link title="Json_to_sql" rel="Chapter" href="Json_to_sql.html"><title>Infer_type.infer_jvalue_type</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;infer_jarray_type&nbsp;a=&nbsp;<span class="keyword">match</span>&nbsp;a&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;v::(w::l)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">let</span>&nbsp;iv=(infer_jvalue_type&nbsp;v)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Ar</span>(<span class="keyword">match</span>&nbsp;infer_jarray_type&nbsp;(w::l)&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span><span class="constructor">V</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;iv<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span><span class="constructor">Ar</span>&nbsp;ar&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;merge_jvalue_type&nbsp;iv&nbsp;ar)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;v::[]&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Ar</span>&nbsp;(infer_jvalue_type&nbsp;v)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;[]&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;&nbsp;<span class="constructor">V</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</code><table><tr><td></td><td><span class="comment">(** Prend un jobject et renvoie un jobject_type  *)</span></td></tr></table><code class="code"><br>
+<span class="keyword">and</span>&nbsp;infer_jobject_type&nbsp;o=<span class="constructor">StringMap</span>.fold&nbsp;(<span class="keyword">fun</span>&nbsp;s&nbsp;jval&nbsp;oo&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;add_jobject_type&nbsp;s&nbsp;(infer_jvalue_type&nbsp;jval)&nbsp;oo)&nbsp;o&nbsp;<span class="constructor">StringMap</span>.empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</code><table><tr><td></td><td><span class="comment">(** Prend une jvalue et renvoie un jvalue_type  *)</span></td></tr></table><code class="code"><br>
+<span class="keyword">and</span>&nbsp;infer_jvalue_type&nbsp;v=<span class="keyword">match</span>&nbsp;v&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">N</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">TNull</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">B</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">TBool</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">S</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">TString</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">F</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">TNumber</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">O</span>&nbsp;o&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">TObject</span>&nbsp;(infer_jobject_type&nbsp;o)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">A</span>&nbsp;a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">TArray</span>&nbsp;(infer_jarray_type&nbsp;a)</code></body></html>

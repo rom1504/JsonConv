@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Json_to_json.html">
+<link rel="next" href="Infer_type.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Type" rel="Chapter" href="Type.html">
+<link title="Json_to_json" rel="Chapter" href="Json_to_json.html">
+<link title="Json_to_xml" rel="Chapter" href="Json_to_xml.html">
+<link title="Infer_type" rel="Chapter" href="Infer_type.html">
+<link title="Json_to_type" rel="Chapter" href="Json_to_type.html">
+<link title="Json_to_sql" rel="Chapter" href="Json_to_sql.html"><title>Json_to_xml</title>
+</head>
+<body>
+<div class="navbar"><a href="Json_to_json.html">Previous</a>
+&nbsp;<a href="index.html">Up</a>
+&nbsp;<a href="Infer_type.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Json_to_xml.html">Json_to_xml</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Json_to_xml: <code class="code">sig</code> <a href="Json_to_xml.html">..</a> <code class="code">end</code></pre>Permet de convertir une jvalue en une string contenant un xml<br>
+<hr width="100%">
+<pre><span id="VALsmap"><span class="keyword">val</span> <a href="code_VALJson_to_xml.smap.html">smap</a></span> : <code class="type">(char -> char) -> string -> string</code></pre><div class="info">
+Applique f aux caractères de s<br>
+</div>
+<pre><span id="VALstringUnderscoreOfSpace"><span class="keyword">val</span> <a href="code_VALJson_to_xml.stringUnderscoreOfSpace.html">stringUnderscoreOfSpace</a></span> : <code class="type">string -> string</code></pre><div class="info">
+Remplace les espaces par des underscore dans s<br>
+</div>
+<pre><span id="VALxml_string_of_jarray"><span class="keyword">val</span> <a href="code_VALJson_to_xml.xml_string_of_jarray.html">xml_string_of_jarray</a></span> : <code class="type"><a href="Type.html#TYPEjarray">Type.jarray</a> -> string</code></pre><div class="info">
+Transforme un jarray en une string xml<br>
+</div>
+<pre><span id="VALxml_string_of_jobject"><span class="keyword">val</span> <a href="code_VALJson_to_xml.xml_string_of_jobject.html">xml_string_of_jobject</a></span> : <code class="type"><a href="Type.html#TYPEjvalue">Type.jvalue</a> Type.StringMap.t -> string</code></pre><div class="info">
+Transforme un jobject en une string xml<br>
+</div>
+<pre><span id="VALxml_string_of_jvalue"><span class="keyword">val</span> <a href="code_VALJson_to_xml.xml_string_of_jvalue.html">xml_string_of_jvalue</a></span> : <code class="type"><a href="Type.html#TYPEjvalue">Type.jvalue</a> -> string</code></pre><div class="info">
+Transforme un jvalue en une string xml<br>
+</div>
+<pre><span id="VALpretty_print"><span class="keyword">val</span> <a href="code_VALJson_to_xml.pretty_print.html">pretty_print</a></span> : <code class="type"><a href="Type.html#TYPEjvalue">Type.jvalue</a> -> unit</code></pre><div class="info">
+Transforme un jvalue en une string xml puis l'affiche<br>
+</div>
+</body></html>

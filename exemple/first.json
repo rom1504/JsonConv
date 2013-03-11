@@ -1,0 +1,3 @@
+[{ "string" : "chaine", "number" : 3.14e-2, 
+   "bool" : true },
+ { "bool" : false, "number" : null }]

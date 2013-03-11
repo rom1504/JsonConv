@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Json_to_xml.html">
+<link rel="next" href="Json_to_type.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Type" rel="Chapter" href="Type.html">
+<link title="Json_to_json" rel="Chapter" href="Json_to_json.html">
+<link title="Json_to_xml" rel="Chapter" href="Json_to_xml.html">
+<link title="Infer_type" rel="Chapter" href="Infer_type.html">
+<link title="Json_to_type" rel="Chapter" href="Json_to_type.html">
+<link title="Json_to_sql" rel="Chapter" href="Json_to_sql.html"><title>Infer_type</title>
+</head>
+<body>
+<div class="navbar"><a href="Json_to_xml.html">Previous</a>
+&nbsp;<a href="index.html">Up</a>
+&nbsp;<a href="Json_to_type.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Infer_type.html">Infer_type</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Infer_type: <code class="code">sig</code> <a href="Infer_type.html">..</a> <code class="code">end</code></pre>Module infer_type : permet de passer d'une jvalue à un jvalue_type<br>
+<hr width="100%">
+<pre><span class="keyword">module</span> <a href="Infer_type.StringMap.html">StringMap</a>: <code class="type">Map.Make</code><code class="code">(</code><code class="type">String</code><code class="code">)</code></pre><br><code><span id="TYPEjvalue_type"><span class="keyword">type</span> <code class="type"></code>jvalue_type</span> = </code><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">TNull</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">TString</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">TNumber</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">TBool</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">TArray</span> <span class="keyword">of</span> <code class="type"><a href="Infer_type.html#TYPEjarray_type">jarray_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">TObject</span> <span class="keyword">of</span> <code class="type"><a href="Infer_type.html#TYPEjobject_type">jobject_type</a></code></code></td>
+
+</tr></table>
+
+<div class="info">
+Type de jvalue<br>
+</div>
+
+<pre><span id="TYPEjobject_type"><span class="keyword">type</span> <code class="type"></code>jobject_type</span> = <code class="type"><a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> StringMap.t</code> </pre>
+<div class="info">
+Type de jobject<br>
+</div>
+
+<br><code><span id="TYPEjarray_type"><span class="keyword">type</span> <code class="type"></code>jarray_type</span> = </code><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Ar</span> <span class="keyword">of</span> <code class="type"><a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">V</span></code></td>
+
+</tr></table>
+
+<div class="info">
+Type de jarray<br>
+</div>
+
+<pre><span id="TYPEjson_type"><span class="keyword">type</span> <code class="type"></code>json_type</span> = <code class="type"><a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a></code> </pre>
+<div class="info">
+Le type json_type est un jvalue_type<br>
+</div>
+
+<pre><span id="EXCEPTIONErreur_typage"><span class="keyword">exception</span> Erreur_typage</span></pre>
+<div class="info">
+Se produit par exemple dans le cas <code class="code">3,"aa"</code><br>
+</div>
+<pre><span id="VALmerge_jobject_type"><span class="keyword">val</span> <a href="code_VALInfer_type.merge_jobject_type.html">merge_jobject_type</a></span> : <code class="type"><a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> StringMap.t -><br>       <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> StringMap.t -><br>       <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> StringMap.t</code></pre><div class="info">
+Fusionne 2 jobject_type<br>
+</div>
+<pre><span id="VALmerge_jvalue_type"><span class="keyword">val</span> <a href="code_VALInfer_type.merge_jvalue_type.html">merge_jvalue_type</a></span> : <code class="type"><a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> -> <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> -> <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a></code></pre><div class="info">
+Fusionne 2 jvalue_type<br>
+</div>
+<pre><span id="VALmerge_jarray_type"><span class="keyword">val</span> <a href="code_VALInfer_type.merge_jarray_type.html">merge_jarray_type</a></span> : <code class="type"><a href="Infer_type.html#TYPEjarray_type">jarray_type</a> -> <a href="Infer_type.html#TYPEjarray_type">jarray_type</a> -> <a href="Infer_type.html#TYPEjarray_type">jarray_type</a></code></pre><div class="info">
+Fusionne 2 jarray_type<br>
+</div>
+<pre><span id="VALadd_jobject_type"><span class="keyword">val</span> <a href="code_VALInfer_type.add_jobject_type.html">add_jobject_type</a></span> : <code class="type">StringMap.key -><br>       <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> -><br>       <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> StringMap.t -><br>       <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> StringMap.t</code></pre><div class="info">
+Ajoute une valeur associé à une clé dans un jobject_type<br>
+</div>
+<pre><span id="VALinfer_jarray_type"><span class="keyword">val</span> <a href="code_VALInfer_type.infer_jarray_type.html">infer_jarray_type</a></span> : <code class="type"><a href="Type.html#TYPEjarray">Type.jarray</a> -> <a href="Infer_type.html#TYPEjarray_type">jarray_type</a></code></pre><div class="info">
+Prend un jarray et renvoie un jarray_type<br>
+</div>
+<pre><span id="VALinfer_jobject_type"><span class="keyword">val</span> <a href="code_VALInfer_type.infer_jobject_type.html">infer_jobject_type</a></span> : <code class="type"><a href="Type.html#TYPEjvalue">Type.jvalue</a> StringMap.t -><br>       <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> StringMap.t</code></pre><div class="info">
+Prend un jobject et renvoie un jobject_type<br>
+</div>
+<pre><span id="VALinfer_jvalue_type"><span class="keyword">val</span> <a href="code_VALInfer_type.infer_jvalue_type.html">infer_jvalue_type</a></span> : <code class="type"><a href="Type.html#TYPEjvalue">Type.jvalue</a> -> <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a></code></pre><div class="info">
+Prend une jvalue et renvoie un jvalue_type<br>
+</div>
+<pre><span id="VALinfer_type"><span class="keyword">val</span> <a href="code_VALInfer_type.infer_type.html">infer_type</a></span> : <code class="type"><a href="Type.html#TYPEjvalue">Type.jvalue</a> -> <a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a></code></pre><div class="info">
+La fonction infer_type est la fonction infer_jvalue_type<br>
+</div>
+<pre><span id="VALstringMapConcat"><span class="keyword">val</span> <a href="code_VALInfer_type.stringMapConcat.html">stringMapConcat</a></span> : <code class="type">(StringMap.key -> 'a -> string) -><br>       string -> 'a StringMap.t -> string</code></pre><div class="info">
+Utilise la fonction fold de StringMap pour recréer une fonction au même comportement que String.concat mais pour les jobject<br>
+</div>
+<pre><span id="VALstring_of_jvalue_type"><span class="keyword">val</span> <a href="code_VALInfer_type.string_of_jvalue_type.html">string_of_jvalue_type</a></span> : <code class="type"><a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> -> string</code></pre><div class="info">
+Converti un jvalue_type en une string le représentant<br>
+</div>
+<pre><span id="VALstring_of_jobject_type"><span class="keyword">val</span> <a href="code_VALInfer_type.string_of_jobject_type.html">string_of_jobject_type</a></span> : <code class="type"><a href="Infer_type.html#TYPEjobject_type">jobject_type</a> -> string</code></pre><div class="info">
+Converti un jobject_type en une string le représentant<br>
+</div>
+<pre><span id="VALstring_of_jarray_type"><span class="keyword">val</span> <a href="code_VALInfer_type.string_of_jarray_type.html">string_of_jarray_type</a></span> : <code class="type"><a href="Infer_type.html#TYPEjarray_type">jarray_type</a> -> string</code></pre><div class="info">
+Converti un jarray_type en une string le représentant<br>
+</div>
+<pre><span id="VALstring_of_json_type"><span class="keyword">val</span> <a href="code_VALInfer_type.string_of_json_type.html">string_of_json_type</a></span> : <code class="type"><a href="Infer_type.html#TYPEjvalue_type">jvalue_type</a> -> string</code></pre><div class="info">
+String_of_json_type est string_of_jvalue_type<br>
+</div>
+</body></html>

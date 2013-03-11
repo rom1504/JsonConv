@@ -1,0 +1,29 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Type" rel="Chapter" href="Type.html">
+<link title="Json_to_json" rel="Chapter" href="Json_to_json.html">
+<link title="Json_to_xml" rel="Chapter" href="Json_to_xml.html">
+<link title="Infer_type" rel="Chapter" href="Infer_type.html">
+<link title="Json_to_type" rel="Chapter" href="Json_to_type.html">
+<link title="Json_to_sql" rel="Chapter" href="Json_to_sql.html"><title>Json_to_xml.xml_string_of_jobject</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;xml_string_of_jarray&nbsp;a&nbsp;=&nbsp;<span class="string">"&lt;tab&gt;"</span>^(<span class="constructor">String</span>.concat&nbsp;<span class="string">""</span>&nbsp;(<span class="constructor">List</span>.map&nbsp;(<span class="keyword">fun</span>&nbsp;jval&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="string">"&lt;item&gt;"</span>^(xml_string_of_jvalue&nbsp;jval)^<span class="string">"&lt;/item&gt;"</span>)&nbsp;a))^<span class="string">"&lt;/tab&gt;"</span><br>
+<br>
+</code><table><tr><td></td><td><span class="comment">(** Transforme un jobject en une string xml *)</span></td></tr></table><code class="code"><br>
+<span class="keyword">and</span>&nbsp;xml_string_of_jobject&nbsp;o&nbsp;=&nbsp;<span class="constructor">String</span>.concat&nbsp;<span class="string">""</span>&nbsp;(<span class="constructor">StringMap</span>.fold&nbsp;(<span class="keyword">fun</span>&nbsp;s&nbsp;jval&nbsp;l&nbsp;<span class="keywordsign">-&gt;</span><span class="keyword">let</span>&nbsp;t&nbsp;=&nbsp;stringUnderscoreOfSpace&nbsp;s&nbsp;&nbsp;<span class="keyword">in</span>&nbsp;&nbsp;(<span class="string">"&lt;"</span>^t^<span class="string">"&gt;"</span>^(xml_string_of_jvalue&nbsp;jval)^<span class="string">"&lt;/"</span>^t^<span class="string">"&gt;"</span>)::l&nbsp;)&nbsp;o&nbsp;[])<br>
+<br>
+</code><table><tr><td></td><td><span class="comment">(** Transforme un jvalue en une string xml *)</span></td></tr></table><code class="code"><br>
+<span class="keyword">and</span>&nbsp;xml_string_of_jvalue&nbsp;jval&nbsp;=&nbsp;<span class="keyword">match</span>&nbsp;jval&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">S</span>&nbsp;s&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;s<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">F</span>&nbsp;f&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string_of_float&nbsp;f<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">B</span>&nbsp;b&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="keyword">if</span>&nbsp;b&nbsp;<span class="keyword">then</span>&nbsp;<span class="string">"&lt;true/&gt;"</span>&nbsp;<span class="keyword">else</span>&nbsp;<span class="string">"&lt;false/&gt;"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">N</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="string">"&lt;null/&gt;"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">O</span>&nbsp;jobj&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;xml_string_of_jobject&nbsp;jobj<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">A</span>&nbsp;jarr&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;xml_string_of_jarray&nbsp;jarr</code></body></html>
